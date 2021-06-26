@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_19_140048) do
+ActiveRecord::Schema.define(version: 2021_06_23_145845) do
+
+  create_table "book_lendings", force: :cascade do |t|
+    t.integer "book_id", null: false
+    t.date "start_dt"
+    t.date "end_dt"
+    t.boolean "returned_flg"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_cancelled"
+    t.index ["book_id"], name: "index_book_lendings_on_book_id"
+  end
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -19,4 +30,5 @@ ActiveRecord::Schema.define(version: 2021_06_19_140048) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "book_lendings", "books"
 end

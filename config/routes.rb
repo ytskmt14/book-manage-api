@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
       resources :books
+      resources :book_lendings do
+        member do
+          post 'cancel'
+        end
+      end
     end
   end
 end
